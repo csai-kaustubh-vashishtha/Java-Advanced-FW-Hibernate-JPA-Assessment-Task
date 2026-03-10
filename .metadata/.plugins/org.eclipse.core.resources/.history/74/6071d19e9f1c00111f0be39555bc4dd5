@@ -1,0 +1,116 @@
+package com.capgemini.java_dev.framework.hibernate_jpa.dao;
+
+import com.capgemini.java_dev.framework.hibernate_jpa.entity.Address;
+import com.capgemini.java_dev.framework.hibernate_jpa.entity.Employee;
+import com.capgemini.java_dev.framework_hibernate_jpa.util.JPAUtil;
+
+import jakarta.persistence.EntityManager;
+
+public class EmployeeDAO {
+
+    public void addEmployee(Employee emp) {
+
+        EntityManager em = JPAUtil.getEntityManager();
+        em.getTransaction().begin();
+
+        em.persist(emp);
+
+        em.getTransaction().commit();
+
+        System.out.println("Employee added successfully");
+        printEmployee(emp);
+
+        em.close();
+    }
+
+    public void searchEmployee(int id) {
+
+        EntityManager em = JPAUtil.getEntityManager();
+
+        Employee emp = em.find(Employee.class, id);
+
+        if(emp == null) {
+            System.out.println("No employee found.");
+        }
+        else {
+            printEmployee(emp);
+        }
+
+        em.close();
+    }
+
+    public void updateSalary(int id, double newSalary) {
+
+        EntityManager em = JPAUtil.getEntityManager();
+        em.getTransaction().begin();
+
+        Employee emp = em.find(Employee.class, id);
+
+        if(emp == null) {
+            System.out.println("No employee found.");
+        }
+        else {
+            emp.setSalary(newSalary);
+            System.out.println("Employee salary updated successfully");
+        }
+
+        em.getTransaction().commit();
+        em.close();
+    }
+
+    public void updateAddress(int id, String street, String city, String zip) {
+
+        EntityManager em = JPAUtil.getEntityManager();
+        em.getTransaction().begin();
+
+        Employee emp = em.find(Employee.class, id);
+
+        if(emp == null) {
+            System.out.println("No employee found.");
+        }
+        else {
+
+            Address addr = emp.getAddress();
+
+            addr.setStreet(street);
+            addr.setCity(city);
+            addr.setZipcode(zip);
+
+            System.out.println("Address updated successfully");
+        }
+
+        em.getTransaction().commit();
+        em.close();
+    }
+
+    public void deleteEmployee(int id) {
+
+        EntityManager em = JPAUtil.getEntityManager();
+        em.getTransaction().begin();
+
+        Employee emp = em.find(Employee.class, id);
+
+        if(emp == null) {
+            System.out.println("No employee found.");
+        }
+        else {
+            em.remove(emp);
+            System.out.println("Employee deleted successfully");
+        }
+
+        em.getTransaction().commit();
+        em.close();
+    }
+
+    public void printEmployee(Employee emp) {
+
+        System.out.println("ID: " + emp.getId());
+        System.out.println("Name: " + emp.getName());
+        System.out.println("Email: " + emp.getEmail());
+        System.out.println("Salary: " + emp.getSalary());
+        System.out.println("Address:");
+        System.out.println("  Street: " + emp.getAddress().getStreet());
+        System.out.println("  City: " + emp.getAddress().getCity());
+        System.out.println("  Zipcode: " + emp.getAddress().getZipcode());
+    }
+}

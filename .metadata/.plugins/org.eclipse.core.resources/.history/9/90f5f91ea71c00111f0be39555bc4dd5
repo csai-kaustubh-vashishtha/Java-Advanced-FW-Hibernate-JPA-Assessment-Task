@@ -1,0 +1,5 @@
+package com.capgemini.java_advance.framework.hibernate_jpa.main;
+
+public class MainApp {
+
+}

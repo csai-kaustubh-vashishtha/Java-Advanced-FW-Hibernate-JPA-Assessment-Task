@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;java_advance.framework_hibernate_Customer_and_Wallet_System/src/main/resources/META-INF/persistane.xml&apos; to &apos;persistence.xml&apos;" description="Rename resource &apos;persistane.xml&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/main/resources/META-INF/persistane.xml" name="persistence.xml" stamp="1773164821868" updateReferences="true"/>
+</session>

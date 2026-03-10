@@ -1,0 +1,94 @@
+package com.capgemini.java_advance.framework_hibernate_jpa.main;
+
+
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Scanner;
+
+import com.capgemini.java_advance.framework_hibernate_jpa.dao.UserDAO;
+import com.capgemini.java_advance.framework_hibernate_jpa.entity.Profile;
+import com.capgemini.java_advance.framework_hibernate_jpa.entity.User;
+
+public class JavaApp {
+
+    public static void execution()  {
+
+        Scanner sc = new Scanner(System.in);
+        UserDAO dao = new UserDAO();
+
+        while(true) {
+
+            System.out.println("1 Add User");
+            System.out.println("2 Search User");
+            System.out.println("3 Update Email");
+            System.out.println("4 Update Profile");
+            System.out.println("5 Delete User");
+            System.out.println("6 Exit");
+
+            int ch = sc.nextInt();
+            sc.nextLine();
+
+            switch(ch) {
+
+            case 1:
+
+                String username = sc.next();
+                String email = sc.next();
+                String phone = sc.next();
+                String gender = sc.next();
+                String dob = sc.next();
+
+                Date date = new SimpleDateFormat("yyyy-MM-dd").parse(dob);
+
+                Profile p = new Profile(phone,gender,date);
+                User u = new User(username,email,p);
+
+                dao.addUser(u);
+
+                break;
+
+            case 2:
+
+                int id = sc.nextInt();
+                dao.searchUser(id);
+
+                break;
+
+            case 3:
+
+                int id1 = sc.nextInt();
+                String newEmail = sc.next();
+
+                dao.updateEmail(id1,newEmail);
+
+                break;
+
+            case 4:
+
+                int uid = sc.nextInt();
+                String ph = sc.next();
+                String gen = sc.next();
+                String dob2 = sc.next();
+
+                Date d = new SimpleDateFormat("yyyy-MM-dd").parse(dob2);
+
+                dao.updateProfile(uid,ph,gen,d);
+
+                break;
+
+            case 5:
+
+                int did = sc.nextInt();
+
+                dao.deleteUser(did);
+
+                break;
+
+            case 6:
+
+                System.exit(0);
+            }
+        }
+    }
+}

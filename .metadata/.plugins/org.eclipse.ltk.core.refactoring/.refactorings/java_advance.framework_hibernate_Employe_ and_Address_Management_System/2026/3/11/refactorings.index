@@ -1,0 +1,10 @@
+1773155033265	Rename type 'address'
+1773155046654	Rename type 'employee'
+1773155127303	Rename type 'JavaUtil'
+1773155366567	Rename compilation unit 'JPAutil.java'
+1773157653796	Rename resource 'META_INF'
+1773157710068	Delete element
+1773160731585	Rename package 'com.capgemini.java_dev.framework_hibernate_jpa.util'
+1773160749078	Rename package 'com.capgemini.java_dev.framework.hibernate_jpa.dao'
+1773160764209	Rename package 'com.capgemini.java_dev.framework.hibernate_jpa.entity'
+1773160791538	Rename package 'com.capgemini.java_dev.framework.hibernate_jpa.main'

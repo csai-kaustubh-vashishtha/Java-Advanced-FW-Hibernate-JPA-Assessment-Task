@@ -1,0 +1,5 @@
+package com.capgemini.java_dev.framework_hibernate_jpa.util;
+
+public class JavaUtil {
+
+}

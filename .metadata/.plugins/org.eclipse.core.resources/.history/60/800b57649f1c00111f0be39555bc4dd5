@@ -1,0 +1,5 @@
+package java_advance.framework_hibernate_User_and_Profile_Management_System;
+
+public class User {
+
+}

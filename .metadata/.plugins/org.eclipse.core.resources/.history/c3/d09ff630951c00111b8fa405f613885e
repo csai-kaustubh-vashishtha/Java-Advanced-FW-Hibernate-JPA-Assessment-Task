@@ -1,0 +1,128 @@
+package com.capgemini.java_dev.framework.hibernate_jpa.main;
+
+
+
+import java.util.Scanner;
+
+import com.capgemini.java_dev.framework.hibernate_jpa.dao.EmployeeDAO;
+import com.capgemini.java_dev.framework.hibernate_jpa.entity.Address;
+import com.capgemini.java_dev.framework.hibernate_jpa.entity.Employee;
+
+
+
+package service;
+
+import java.util.Scanner;
+
+import dao.EmployeeDAO;
+import entity.Employee;
+import entity.Address;
+
+public class JavaApp {
+
+    public static  void execution() {
+
+        Scanner sc = new Scanner(System.in);
+        EmployeeDAO dao = new EmployeeDAO();
+
+        while(true) {
+
+            System.out.println("\n1 Add Employee");
+            System.out.println("2 Search Employee");
+            System.out.println("3 Update Salary");
+            System.out.println("4 Update Address");
+            System.out.println("5 Delete Employee");
+            System.out.println("6 Exit");
+            System.out.print("Enter choice: ");
+
+            int choice = sc.nextInt();
+
+            switch(choice) {
+
+            case 1:
+
+                sc.nextLine();
+
+                System.out.print("Enter name: ");
+                String name = sc.nextLine();
+
+                System.out.print("Enter email: ");
+                String email = sc.nextLine();
+
+                System.out.print("Enter salary: ");
+                double salary = sc.nextDouble();
+                sc.nextLine();
+
+                System.out.print("Enter street: ");
+                String street = sc.nextLine();
+
+                System.out.print("Enter city: ");
+                String city = sc.nextLine();
+
+                System.out.print("Enter zipcode: ");
+                String zip = sc.nextLine();
+
+                Address address = new Address(street, city, zip);
+                Employee emp = new Employee(name, email, salary, address);
+
+                dao.addEmployee(emp);
+
+                break;
+
+            case 2:
+
+                System.out.print("Enter employee id: ");
+                int id = sc.nextInt();
+
+                dao.searchEmployee(id);
+                break;
+
+            case 3:
+
+                System.out.print("Enter employee id: ");
+                int empId = sc.nextInt();
+
+                System.out.print("Enter new salary: ");
+                double newSalary = sc.nextDouble();
+
+                dao.updateSalary(empId, newSalary);
+                break;
+
+            case 4:
+
+                System.out.print("Enter employee id: ");
+                int id2 = sc.nextInt();
+                sc.nextLine();
+
+                System.out.print("Enter street: ");
+                String st = sc.nextLine();
+
+                System.out.print("Enter city: ");
+                String ct = sc.nextLine();
+
+                System.out.print("Enter zipcode: ");
+                String zp = sc.nextLine();
+
+                dao.updateAddress(id2, st, ct, zp);
+                break;
+
+            case 5:
+
+                System.out.print("Enter employee id: ");
+                int delId = sc.nextInt();
+
+                dao.deleteEmployee(delId);
+                break;
+
+            case 6:
+
+                System.out.println("Program terminated");
+                return;
+
+            default:
+
+                System.out.println("Invalid choice");
+            }
+        }
+    }
+}
